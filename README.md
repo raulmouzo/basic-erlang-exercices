@@ -66,6 +66,9 @@ and propagates to all the linked processes.
     * Valid only in local network.
     * A node started with -sname cannot communicate with nodes started with -name.
 * `node()` returns the name of the current node.
+    * `node(Pid)` returns a list of all the nodes currently connected (in the Erlang distributed network).
+* `nodes()`
+
 
 ### Authentication
 * Authentication uses cookies. A node can only communicate with nodes using the same cookie.
@@ -75,3 +78,4 @@ Cookies may be set:
 * In the `.erlang.cookie` file in the $HOME dir.
 * Using the `-setcookie` option. `$erl -setcookie galleta`
 * Using the erlang: `set_cookie(Node, Cookie)` function
+    * `get_cookie()`
