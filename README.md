@@ -58,7 +58,7 @@ and propagates to all the linked processes.
     * When trap_exit is set to true, the receiving process will not automatically stop when it receives an exit message from a linked process.
     * Any exit signal received by the process is changed into a message with format: `{'EXIT', Pid, Reason}` 
 
-## Nodes
+## Nodes
 
 * `erl -name name` (terminal) starts a distributed Erlang node with a specified name.
     * The node name will be *Name@Host*, where *Host* is the machine name.
