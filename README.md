@@ -57,3 +57,21 @@ and propagates to all the linked processes.
 * `process_flag(trap_exit, true)` : function that sets the trap_exit option to true in the current process.
     * When trap_exit is set to true, the receiving process will not automatically stop when it receives an exit message from a linked process.
     * Any exit signal received by the process is changed into a message with format: `{'EXIT', Pid, Reason}` 
+
+## Nodes
+
+* `erl -name name` (terminal) starts a distributed Erlang node with a specified name.
+    * The node name will be *Name@Host*, where *Host* is the machine name.
+* `erl -sname name` (terminal)starts a distributed Erlang node with a short name.
+    * Valid only in local network.
+    * A node started with -sname cannot communicate with nodes started with -name.
+* `node()` returns the name of the current node.
+
+### Authentication
+* Authentication uses cookies. A node can only communicate with nodes using the same cookie.
+
+Cookies may be set:
+* By not setting it. The VM uses a random value.
+* In the `.erlang.cookie` file in the $HOME dir.
+* Using the `-setcookie` option. `$erl -setcookie galleta`
+* Using the erlang: `set_cookie(Node, Cookie)` function
