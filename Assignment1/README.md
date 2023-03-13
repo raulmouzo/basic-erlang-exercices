@@ -22,7 +22,7 @@ send(N, Msg) -> ...
 loop() -> ...
 ```
 
-Provide an implementation for the send/2, register/1 and loop functions. You may add parameter to loop.
+**Provide an implementation for the send/2, register/1 and loop functions. You may add parameter to loop.**
 
 2. Store 
 
@@ -47,4 +47,37 @@ get(S, F) -> ...
 loop() -> ...
 ```
 
-Provide an implementation for store/2, get/2 and loop/0. You may add auxiliary functions and parameters to loop.
+**Provide an implementation for store/2, get/2 and loop/0. You may add auxiliary functions and parameters to loop.**
+
+
+3. Process Tree 
+
+We have a module which implements an n-ary process tree, where each node in the tree is a separate process which stores a list with the pids of its children. We can create nodes using start node/0, and add new children to an existing node calling add child/2.
+
+```
+-module(tree).
+-export([start_node/0, add_child/2, height/1]).
+
+%% API
+start_node() ->
+    spawn(?MODULE, init_node, []).
+
+add_child(Tree, Child_Tree) ->
+    Tree ! {add_child, Child_Tree}.
+
+height(Tree) ->
+    ...
+
+%% Internal functions
+init_node() ->
+    node_loop([]).
+
+node_loop(Children) ->
+    receive
+        {add_child, Child_Tree} ->
+            node_loop(Children ++ [Child_Tree]);
+        ... 
+    end.
+```
+
+**Write a function height/1 that returns the height of the tree of processes.**
